@@ -23,7 +23,7 @@ Function.prototype.bind2 = function (context) {
     );
   };
   //   fix: 持有的是引用，如果改动 fBound ，原来的函数原型会受影响
-  //   fNOP.prototype = this.prototype;
+  fNOP.prototype = this.prototype;
   fBound.prototype = new fNOP();
   return fBound;
 };

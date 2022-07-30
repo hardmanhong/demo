@@ -8,8 +8,9 @@
 function newFn() {
   const Constructor = [].shift.call(arguments);
   const obj = Object.create(Constructor.prototype);
-  Constructor.apply(obj, arguments);
-  return typeof result === 'object' ? result : obj;
+  const result = Constructor.apply(obj, arguments);
+  if (!result) return obj;
+  if (typeof result === 'object' || typeof result === 'function') return result;
 }
 function Foo(name) {
   this.name = name;
